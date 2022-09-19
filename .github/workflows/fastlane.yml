@@ -24,6 +24,8 @@ jobs:
           distribution: adopt
       - name: Install bundle
         run: bundle install
+      - name: Install deps
+        run: npm install
       - name: Change gradlew permisssion
         run: chmod +x ./android/gradlew
       - name: Run Fastlane
