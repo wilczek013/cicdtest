@@ -1,0 +1,5 @@
+platform :android do
+    lane :test do
+        gradle(task: 'clean', project_dir: './android')
+    end
+end
