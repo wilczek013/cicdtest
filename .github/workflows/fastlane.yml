@@ -1,0 +1,24 @@
+name: Fastlane
+on:
+  push:
+    branches:
+      - mainx
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: @actions/checkout@v2
+      - name: Setup Node
+        uses: @actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Setup Ruby
+        uses: @actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - name: Setup Java
+        uses: @actions/setup-java@v2
+        with:
+          java-version: '17'
+      
