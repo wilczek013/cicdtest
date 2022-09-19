@@ -1,5 +1,6 @@
 platform :android do
     lane :test do
         gradle(task: 'clean', project_dir: './android')
+        gradle(task: 'assemble', build_type: 'Release', project_dir: '/android')
     end
 end
