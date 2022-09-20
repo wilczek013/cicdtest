@@ -22,7 +22,7 @@ jobs:
       - name: Install packages
         run: npm install
       - name: Install pods
-        run: cd ios && pod install
+        run: pod install
       - name: Install bundle
         run: bundle install
       - name: Build app
