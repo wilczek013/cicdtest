@@ -4,7 +4,22 @@ on:
     branches:
       - main
 jobs:
-
+  # build-ios:
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #     - name: Setup Ruby
+  #       uses: actions/setup-ruby@v1
+  #       with:
+  #         ruby-version: 2.7
+  #     - name: Install bundle
+  #       run: bundle install
+  #     - name: Install deps
+  #       run: npm install
   build-android:
     runs-on: ubuntu-latest
     steps:
