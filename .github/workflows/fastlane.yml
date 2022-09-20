@@ -1,8 +1,8 @@
 name: Fastlane
 on:
-  push:
-    branches:
-      - main
+  label:
+    types:
+      - created
 jobs:
   build-android:
     runs-on: ubuntu-latest
