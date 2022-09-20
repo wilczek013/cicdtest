@@ -5,3 +5,9 @@ platform :android do
         gradle(task: 'assemble', build_type: 'Release', project_dir: './android')
     end
 end
+
+platform :ios do
+    lane :test do 
+        build_ios_app(scheme:"Releasep")
+    end
+end

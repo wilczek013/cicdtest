@@ -23,8 +23,10 @@ jobs:
         run: npm install
       - name: Install pods
         run: cd ios && pod install
-      - name: get crnt directory
-        run: pwd
+      - name: Install bundle
+        run: bundle install
+      - name: Build app
+        run: bundle exec fastlane ios test
 
 
   # build-android:
