@@ -8,6 +8,6 @@ end
 
 platform :ios do
     lane :test do 
-        build_ios_app(scheme:"Releasep")
+        build_ios_app(scheme:"Releasep", project_dir: './ios')
     end
 end
