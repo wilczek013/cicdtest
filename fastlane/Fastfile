@@ -1,6 +1,7 @@
 platform :android do
     lane :test do |options|
         puts( (options[:tag]))
+        puts(last_git_tag)
         # gradle(task: 'clean', project_dir: './android')
         # gradle(task: 'assemble', build_type: 'Release', project_dir: './android')
     end
