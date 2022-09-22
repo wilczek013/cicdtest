@@ -13,11 +13,11 @@ jobs:
     steps:
       - run: echo "Name ${{ github.event.release.name }} Description ${{ github.event.release.body }}"
 
-# name: Fastlane
+# name: CICD with 
 # on:
-#   push:
-#     branches:
-#       - main
+#   release:
+#     types: 
+#       - published
 # jobs:
 #   build-ios:
 #     runs-on: macos-latest
