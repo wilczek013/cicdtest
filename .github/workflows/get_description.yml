@@ -1,0 +1,16 @@
+name: Changelog
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  test-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Get body from release description
+        run: |
+          print "Release body: ${{ github.event.release.body }}"
