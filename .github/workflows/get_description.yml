@@ -10,7 +10,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Print release body
-        run: echo ${{ github.event.release.body }}
+        run: |
+          
+          echo ${{ github.event.release.body | sed '1,2d'}}
 
 
 # name: After Release
