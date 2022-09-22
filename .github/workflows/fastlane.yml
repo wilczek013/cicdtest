@@ -3,7 +3,7 @@ name: After Release
 on:
   release:
     types: 
-      - created
+      - published
 
 jobs:
   after-release:
