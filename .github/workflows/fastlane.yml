@@ -13,7 +13,7 @@
 #     steps:
 #       - run: echo "Name ${{ github.event.release.name }} Description ${{ github.event.release.body }}"
 
-name: CICD with 
+name: CI/CD 
 on:
   release:
     types: 
