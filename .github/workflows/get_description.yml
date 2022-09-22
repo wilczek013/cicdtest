@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Get body from release description
         run: |
-          print "Release body: ${{ github.event.release.body }}"
+          print "Release body ${{ github.event.release.body }}"
