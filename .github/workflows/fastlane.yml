@@ -9,7 +9,7 @@ jobs:
   after-release:
     runs-on: ubuntu-latest
     # run if release description contains "build_android: true"
-    if: contains(github.event.release.body, 'build_android: true')
+    if: contains(github.event.release.body, 'build_android true')
     steps:
       - run: echo "Name ${{ github.event.release.name }} Description ${{ github.event.release.body }}"
 
