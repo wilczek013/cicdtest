@@ -7,7 +7,7 @@ platform :android do
 end
 
 platform :ios do
-    lane :test do 
-        puts ("running ios build")
+    lane :test do |options|
+        puts (options[:description])
     end
 end
