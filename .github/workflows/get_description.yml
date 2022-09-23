@@ -12,7 +12,7 @@ jobs:
       - name: Print release body
         shell: bash
         run: |
-          description=${{ github.event.release.body }}
+          description="${{ github.event.release.body }}"
           # Print the description without the first two lines
           echo "${description}" | tail -n +3
 
