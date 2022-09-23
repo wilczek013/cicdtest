@@ -11,10 +11,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Print release body
         run: |
-          description=$(cat <<EOF
-            ${{ github.event.release.body }}
-          EOF
-          )
+          description=$(jq -r '.release.body' $GITHUB_EVENT_PATH)
           # Print the description without the first two lines
           echo "${description}" | tail -n +3
 
