@@ -10,8 +10,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Print release body
+        shell: bash
         run: |
-          description=$(jq -r '.release.body' $GITHUB_EVENT_PATH)
+          description=${{ github.event.release.body }}
           # Print the description without the first two lines
           echo "${description}" | tail -n +3
 
