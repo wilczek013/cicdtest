@@ -14,7 +14,9 @@ jobs:
         run: |
           description="${{ github.event.release.body }}"
           # Print the description without the first two lines
-          echo "${description}" | tail -n +3
+          echo "${description}" > description.txt
+      - name: Print file content
+        run: cat description.txt
 
 
 # name: After Release
