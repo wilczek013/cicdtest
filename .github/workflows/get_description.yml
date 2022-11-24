@@ -1,0 +1,30 @@
+
+name: CI/CD 
+on:
+  release:
+    types: 
+      - created
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    # if: contains(github.event.release.body, 'build_android true')
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+      - name: Install bundle
+        run: bundle install
+      - name: Save release description to file
+        shell: bash
+        run: |
+          description="${{ github.event.release.body }}"
+          # Print the description without the first 3 lines
+          echo "${description}" | tail -n + 4 > CHANGELOG.md
+      - name: Install changelog plugin to fastlane
+        run: bundle exec fastlane add_plugin changelog
+      - name: Run Fastlane
+        shell: bash
+        run: |
+          description          
+          bundle exec fastlane android test
