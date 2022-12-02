@@ -9,8 +9,9 @@ on:
 jobs:
   build-ios:
     runs-on: macos-latest
-    # if: |
-    #   contains(github.event.release.body, 'Platforms: iOS') || contains(github.event.release.body, 'Platforms: iOS, Android')
+    if: |
+      ${{ github.event_name == 'release' }} &&
+      contains(github.event.release.body, 'Platforms: iOS') || contains(github.event.release.body, 'Platforms: iOS, Android')
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -41,8 +42,9 @@ jobs:
           bundle exec fastlane ios test
   build-android:
     runs-on: ubuntu-latest
-    # if: |
-    #   contains(github.event.release.body, 'Platforms: Android') || contains(github.event.release.body, 'Platforms: iOS, Android')
+    if: |
+      ${{ github.event_name == 'release' }} &&
+      contains(github.event.release.body, 'Platforms: Android') || contains(github.event.release.body, 'Platforms: iOS, Android')
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
