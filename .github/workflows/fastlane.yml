@@ -35,31 +35,31 @@ jobs:
           name: xxx.txt
           path: xxx.txt
           retention-days: 1
-      # - name: Setup Node
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 16
-      # - name: Setup Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     ruby-version: 2.7
-      # - name: Install bundle
-      #   run: bundle install
-      # - name: Install packages
-      #   run: npm install
-      # - name: Save release description to file
-      #   shell: bash
-      #   if: ${{ github.event_name == 'release' }}
-      #   run: |
-      #     description="${{ github.event.release.body }}"
-      #     # Print the description without the first 3 lines
-      #     echo "${description}" | tail -n + 4 > ios/CHANGELOG.md
-      # - name: Build app
-      #   run: |
-      #     cd ios/fastlane
-      #     ls
-      #     pwd
-      #     bundle exec fastlane ios test
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - name: Install bundle
+        run: bundle install
+      - name: Install packages
+        run: npm install
+      - name: Save release description to file
+        shell: bash
+        if: ${{ github.event_name == 'release' }}
+        run: |
+          description="${{ github.event.release.body }}"
+          # Print the description without the first 3 lines
+          echo "${description}" | tail -n + 4 > ios/CHANGELOG.md
+      - name: Build app
+        run: |
+          cd ios/fastlane
+          ls
+          pwd
+          bundle exec fastlane ios test name:$SECRET1
   build-android:
     runs-on: ubuntu-latest
     if: |
