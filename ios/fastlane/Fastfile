@@ -1,0 +1,5 @@
+platform :ios do
+    lane :test do |options|
+        puts ("hello from ios")
+    end
+end

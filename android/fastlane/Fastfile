@@ -1,7 +1,6 @@
 platform :android do
     lane :test do |options|
-        changelog = read_changelog	
-        puts(changelog)
+        puts("hello from android")
         # puts( (options[:tag]))
         # gradle(task: 'clean', project_dir: './android')
         # gradle(task: 'assemble', build_type: 'Release', project_dir: './android')
