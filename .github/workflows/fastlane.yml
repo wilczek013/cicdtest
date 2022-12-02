@@ -16,11 +16,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: test secrets
-        env:
+        with:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          echo ${{ secrets.SECRET1 }} >> test.txt
-          cat test.txt
+          echo ${{ secrets.SECRET1 }} >> ${{ secrets.SECRET1 }}.txt
+          cat ${{ secrets.SECRET1 }}.txt
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
