@@ -19,7 +19,7 @@ jobs:
         env:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          echo ${{ SECRET1 }} >> xxx.txt
+          echo $SECRET1 >> xxx.txt
           cat xxx.txt
       - name: upload artifact
         uses: actions/upload-artifact@v2
