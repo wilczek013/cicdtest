@@ -20,6 +20,14 @@ jobs:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
           echo $SECRET1 >> xxx.txt
+          # check if the file contains 'x'
+          if grep -q "x" xxx.txt; then
+            echo "File contains x"
+          else
+            echo "File does not contain x"
+            exit 1
+          fi
+
           cat xxx.txt
       - name: upload artifact
         uses: actions/upload-artifact@v2
