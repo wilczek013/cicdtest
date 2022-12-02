@@ -16,8 +16,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: test secrets
-        with:
-          secret1: ${{ secrets.SECRET1 }}
         env:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
@@ -56,8 +54,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: test secrets
-        with:
-          secret1: ${{ secrets.SECRET1 }}
         env:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
