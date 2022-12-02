@@ -19,7 +19,8 @@ jobs:
         env:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          echo $SECRET1 on ${{ runner.os }}
+          echo ${{ secrets.SECRET1 }} >> test.txt
+          cat test.txt
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -57,7 +58,8 @@ jobs:
         env:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          echo $SECRET1 on ${{ runner.os }}
+          echo ${{ secrets.SECRET1 }} >> test.txt
+          cat test.txt
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
