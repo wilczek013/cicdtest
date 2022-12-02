@@ -23,6 +23,12 @@ jobs:
         run: |
           echo ${{ secrets.SECRET1 }} >> xxx.txt
           cat xxx.txt
+      - name: upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: xxx.txt
+          path: xxx.txt
+          retention-days: 1
       # - name: Setup Node
       #   uses: actions/setup-node@v3
       #   with:
