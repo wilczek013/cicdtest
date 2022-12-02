@@ -1,11 +1,11 @@
 name: CI/CD
 on:
-  # push:
-  #   branches:
-  #     - main
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - main
+  # release:
+  #   types:
+  #     - published
 jobs:
   build-ios:
     runs-on: macos-latest
