@@ -9,7 +9,7 @@ on:
 jobs:
   build-ios:
     runs-on: macos-latest
-    if: contains(github.event.release.body, 'build_ios true')
+    # if: contains(github.event.release.body, 'build_ios true')
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
