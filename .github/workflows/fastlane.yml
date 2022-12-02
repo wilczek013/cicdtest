@@ -19,7 +19,7 @@ jobs:
         env:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          echo $SECRET1 >> xxx.txt
+          echo  $SECRET1 >> xxx.txt
           # check if the file contains 'x'
           if grep -q "x" xxx.txt; then
             echo "File contains x"
