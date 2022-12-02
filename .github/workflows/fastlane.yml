@@ -13,7 +13,7 @@ jobs:
     #   contains(github.event.release.body, 'Platforms: iOS') || contains(github.event.release.body, 'Platforms: iOS, Android')
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -45,7 +45,7 @@ jobs:
     #   contains(github.event.release.body, 'Platforms: Android') || contains(github.event.release.body, 'Platforms: iOS, Android')
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
