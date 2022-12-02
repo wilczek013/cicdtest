@@ -19,33 +19,33 @@ jobs:
         with:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          echo ${{ secrets.SECRET1 }} >> ${{ secrets.SECRET1 }}.txt
-          cat ${{ secrets.SECRET1 }}.txt
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-      - name: Install bundle
-        run: bundle install
-      - name: Install packages
-        run: npm install
-      - name: Save release description to file
-        shell: bash
-        if: ${{ github.event_name == 'release' }}
-        run: |
-          description="${{ github.event.release.body }}"
-          # Print the description without the first 3 lines
-          echo "${description}" | tail -n + 4 > ios/CHANGELOG.md
-      - name: Build app
-        run: |
-          cd ios/fastlane
-          ls
-          pwd
-          bundle exec fastlane ios test
+          echo ${{ secrets.SECRET1 }} >> xxx.txt
+          cat xxx.txt
+      # - name: Setup Node
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
+      # - name: Setup Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 2.7
+      # - name: Install bundle
+      #   run: bundle install
+      # - name: Install packages
+      #   run: npm install
+      # - name: Save release description to file
+      #   shell: bash
+      #   if: ${{ github.event_name == 'release' }}
+      #   run: |
+      #     description="${{ github.event.release.body }}"
+      #     # Print the description without the first 3 lines
+      #     echo "${description}" | tail -n + 4 > ios/CHANGELOG.md
+      # - name: Build app
+      #   run: |
+      #     cd ios/fastlane
+      #     ls
+      #     pwd
+      #     bundle exec fastlane ios test
   build-android:
     runs-on: ubuntu-latest
     if: |
@@ -60,36 +60,36 @@ jobs:
         run: |
           echo ${{ secrets.SECRET1 }} >> test.txt
           cat test.txt
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: "17"
-          distribution: adopt
-      - name: Install bundle
-        run: bundle install
-      - name: Install packages
-        run: npm install
-      - name: Change gradlew permisssion
-        run: chmod +rwx ./android/gradlew
-      - name: Save release description to file
-        shell: bash
-        if: ${{ github.event_name == 'release' }}
-        run: |
-          description="${{ github.event.release.body }}"
-          Print the description without the first 3 lines
-          echo "${description}" | tail -n + 4 > android/CHANGELOG.md
-      - name: Run Fastlane
-        shell: bash
-        run: |
-          cd android/fastlane
-          ls
-          pwd
-          bundle exec fastlane android test
+      # - name: Setup Node
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
+      # - name: Setup Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 2.7
+      # - name: Setup Java
+      #   uses: actions/setup-java@v2
+      #   with:
+      #     java-version: "17"
+      #     distribution: adopt
+      # - name: Install bundle
+      #   run: bundle install
+      # - name: Install packages
+      #   run: npm install
+      # - name: Change gradlew permisssion
+      #   run: chmod +rwx ./android/gradlew
+      # - name: Save release description to file
+      #   shell: bash
+      #   if: ${{ github.event_name == 'release' }}
+      #   run: |
+      #     description="${{ github.event.release.body }}"
+      #     Print the description without the first 3 lines
+      #     echo "${description}" | tail -n + 4 > android/CHANGELOG.md
+      # - name: Run Fastlane
+      #   shell: bash
+      #   run: |
+      #     cd android/fastlane
+      #     ls
+      #     pwd
+      #     bundle exec fastlane android test
