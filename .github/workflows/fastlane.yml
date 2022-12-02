@@ -55,6 +55,8 @@ jobs:
           # Print the description without the first 3 lines
           echo "${description}" | tail -n + 4 > ios/CHANGELOG.md
       - name: Build app
+        env:
+          SECRET1: ${{ secrets.SECRET1 }}
         run: |
           cd ios/fastlane
           ls
