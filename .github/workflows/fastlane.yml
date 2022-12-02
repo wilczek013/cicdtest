@@ -13,6 +13,13 @@ jobs:
       ${{ github.event_name == 'release' }} &&
       contains(github.event.release.body, 'Platforms: iOS') || contains(github.event.release.body, 'Platforms: iOS, Android')
     steps:
+      - name: test secrets
+        with:
+          secret1: ${{ secrets.SECRET1 }}
+        env:
+          SECRET1: ${{ secrets.SECRET1 }}
+        run: |
+          echo $SECRET1 on ${{ runner.os }}
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Setup Node
@@ -46,6 +53,13 @@ jobs:
       ${{ github.event_name == 'release' }} &&
       contains(github.event.release.body, 'Platforms: Android') || contains(github.event.release.body, 'Platforms: iOS, Android')
     steps:
+      - name: test secrets
+        with:
+          secret1: ${{ secrets.SECRET1 }}
+        env:
+          SECRET1: ${{ secrets.SECRET1 }}
+        run: |
+          echo $SECRET1 on ${{ runner.os }}
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Setup Node
