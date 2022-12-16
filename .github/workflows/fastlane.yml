@@ -20,15 +20,12 @@ jobs:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
           echo  $SECRET1 >> xxx.txt
-      - name: Deploy Stage
+      - name: send request
         uses: fjogeleit/http-request-action@v1
         with:
           url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a'
           method: 'POST'
-          username: ${{ secrets.AWX_USER }}
-          password: ${{ secrets.AWX_PASSWORD }}
-          customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"key_1": "value_1", "key_2": "value_2"}'
+          data: '{"key_1": ${{ secrets.SECRET1 }}, "key_2": "value_2"}'
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
