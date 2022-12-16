@@ -1,11 +1,11 @@
 name: CI/CD
 on:
-  # push:
-  #   branches:
-  #     - main
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - main
+  # release:
+  #   types:
+  #     - published
 jobs:
   build-ios:
     runs-on: macos-latest
@@ -16,9 +16,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Check branch
-        run: |
-          echo ${{ github.event.release.target_commitish }}
       - name: test secrets
         env:
           SECRET1: ${{ secrets.SECRET1 }}
@@ -27,9 +24,10 @@ jobs:
       - name: send request
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a?env=dev'
-          method: 'POST'
+          url: "https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a?env=dev"
+          method: "POST"
           data: '{"key_1": ${{ secrets.SECRET1 }}, "key_2": "value_2"}'
+
   build-ios-prod: #TODO: DELETE
     runs-on: macos-latest
     environment: prod
@@ -47,8 +45,8 @@ jobs:
       - name: send request
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a?env=prod'
-          method: 'POST'
+          url: "https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a?env=prod"
+          method: "POST"
           data: '{"key_1": ${{ secrets.SECRET1 }}, "key_2": "value_2"}'
 
   #     - name: Setup Node
