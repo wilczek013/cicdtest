@@ -20,15 +20,6 @@ jobs:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
           echo  $SECRET1 >> xxx.txt
-          # check if the file contains 'x'
-          if grep -q "x" xxx.txt; then
-            echo "File contains x"
-          else
-            echo "File does not contain x"
-            exit 1
-          fi
-
-          cat xxx.txt
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
@@ -61,7 +52,7 @@ jobs:
           cd ios/fastlane
           ls
           pwd
-          bundle exec fastlane ios test name:$SECRET1
+          bundle exec fastlane ios test
   build-android:
     runs-on: ubuntu-latest
     if: |
@@ -70,12 +61,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: test secrets
-        env:
-          SECRET1: ${{ secrets.SECRET1 }}
-        run: |
-          echo ${{ secrets.SECRET1 }} >> test.txt
-          cat test.txt
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
