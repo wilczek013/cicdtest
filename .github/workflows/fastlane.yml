@@ -91,5 +91,5 @@ jobs:
         shell: bash
         run: |
           echo "done"
-          cd android
+          cd android/fastlane
           bundle exec fastlane android test
