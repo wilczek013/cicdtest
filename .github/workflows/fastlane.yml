@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      - name: Check branch
+        run: |
+          echo ${{ github.event.release.target_commitish }}
       - name: test secrets
         env:
           SECRET1: ${{ secrets.SECRET1 }}
@@ -48,12 +51,6 @@ jobs:
           method: 'POST'
           data: '{"key_1": ${{ secrets.SECRET1 }}, "key_2": "value_2"}'
 
-  #     - name: upload artifact
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: xxx.txt
-  #         path: xxx.txt
-  #         retention-days: 1
   #     - name: Setup Node
   #       uses: actions/setup-node@v3
   #       with:
