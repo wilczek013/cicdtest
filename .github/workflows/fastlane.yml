@@ -49,9 +49,7 @@ jobs:
         env:
           SECRET1: ${{ secrets.SECRET1 }}
         run: |
-          cd ios/fastlane
-          ls
-          pwd
+          cd ios
           bundle exec fastlane ios test
   build-android:
     runs-on: ubuntu-latest
@@ -91,5 +89,5 @@ jobs:
         shell: bash
         run: |
           echo "done"
-          cd android/fastlane
+          cd android
           bundle exec fastlane android test
